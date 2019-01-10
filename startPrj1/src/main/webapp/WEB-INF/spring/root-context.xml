@@ -16,7 +16,7 @@
 			<!-- <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 			<property name="url" value="jdbc:mysql://127.0.0.1:3306/spring_prj"/> -->
 			<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
-			<property name="url" value="jdbc:log4jdbc:mysql://127.0.0.1:3306/spring_prj"/>
+			<property name="url" value="jdbc:log4jdbc:mysql://127.0.0.1:3306/spring_prj?characterEncoding=UTF-8"/>
 			<property name="username" value="root"/>
 			<property name="password" value="spring"/>
 		</bean>
