@@ -7,10 +7,10 @@
 # Spring Project
 1.게시판 리스트
 ![default](https://user-images.githubusercontent.com/21051557/51040719-90185880-15fb-11e9-865d-0d85473ebe87.PNG)
-
+Spring Framework 와 mysql 을 이용해 게시판 작성 및 목록을 만들었습니다.
 2.게시판 CRUD 구현
 ![default](https://user-images.githubusercontent.com/21051557/51040720-90185880-15fb-11e9-86b0-435284027767.png)
-
+기본적인 CRUD 구현을 하였습니다.
 # Project
 
 1.게시판 만들기
