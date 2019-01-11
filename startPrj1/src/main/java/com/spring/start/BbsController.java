@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.service.BbsService;
 import com.spring.vo.BbsVO;
@@ -22,18 +24,52 @@ public class BbsController {
 	private BbsService bsvc;
 	
 	@RequestMapping(value = "/write",method=RequestMethod.GET)
-	public void writeGet(BbsVO bvo, Model model) throws Exception{ 
+	public void writeGet() throws Exception{ 
 		logger.info("게시글 입력 get");
 	}
 	
 	@RequestMapping(value = "/write",method=RequestMethod.POST)
-	public String writePost(BbsVO bvo, Model model) throws Exception{ 
+	public String writePost(BbsVO bvo, RedirectAttributes reAttr) throws Exception{ 
 		logger.info("게시글 입력 post");
 		logger.info(bvo.toString());
 		
 		bsvc.write(bvo);
-		model.addAttribute("result","게시판 등록");
+		reAttr.addFlashAttribute("result","Success");
 		
-		return "/bbs/resultOk";
+		//return "/bbs/resultOk";
+		return "redirect:/bbs/list";
 	}
+	
+	@RequestMapping("list")
+	public void list(Model model) throws Exception {
+		logger.info("게시판 목록");
+		model.addAttribute("list",bsvc.list());
+	}
+	
+	@RequestMapping("read")
+	public void read(@RequestParam("bid") int bid,Model model) throws Exception{
+		logger.info("게시판 redad");
+		model.addAttribute("bbsVO",bsvc.read(bid));
+	}
+	
+	@RequestMapping("modify")
+	public void modify(BbsVO bbsVO) throws Exception{
+		logger.info("게시판 modify");
+	}
+	
+	@RequestMapping("modifyOk")
+	public String modifyOk(BbsVO bbsVO) throws Exception{
+		logger.info("게시판 modifyOk");
+		logger.info(bbsVO.toString());
+		bsvc.modify(bbsVO);
+		return "redirect:/bbs/list";
+	}
+	
+	@RequestMapping("remove")
+	public String remove(@RequestParam("bid") int bid,Model model) throws Exception{
+		logger.info("게시판 delete");
+		bsvc.remove(bid);
+		return "redirect:/bbs/list";
+	}
+	
 }
