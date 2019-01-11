@@ -6,7 +6,7 @@
 
 # Spring Project
 
-1.게시판 리스트
+1.게시판 만들기
 ![default](https://user-images.githubusercontent.com/21051557/51041208-c2768580-15fc-11e9-9718-2d440107b396.PNG)
 ![default](https://user-images.githubusercontent.com/21051557/51041209-c2768580-15fc-11e9-9eb4-6bbd6730e9b9.png)
 Spring Framework 와 mysql 을 이용해 게시판 작성 및 목록을 만들고 </br>
