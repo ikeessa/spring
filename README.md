@@ -5,12 +5,13 @@
 아래의 프로젝트들은 인턴 생활하면서 공부하면서 만들었던 프로젝트들 입니다.
 
 # Spring Project
+
 1.게시판 리스트
 ![default](https://user-images.githubusercontent.com/21051557/51041208-c2768580-15fc-11e9-9718-2d440107b396.PNG)
-Spring Framework 와 mysql 을 이용해 게시판 작성 및 목록을 만들었습니다.
-2.게시판 CRUD 구현
 ![default](https://user-images.githubusercontent.com/21051557/51041209-c2768580-15fc-11e9-9eb4-6bbd6730e9b9.png)
+Spring Framework 와 mysql 을 이용해 게시판 작성 및 목록을 만들고 </br>
 기본적인 CRUD 구현을 하였습니다.
+
 # Project
 
 1.게시판 만들기
