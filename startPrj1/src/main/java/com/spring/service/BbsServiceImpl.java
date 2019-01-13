@@ -36,8 +36,13 @@ public class BbsServiceImpl implements BbsService {
 	}
 
 	@Override
-	public List<BbsVO> list() throws Exception {
-		return bdao.list();
+	public List<BbsVO> list(Integer bcount) throws Exception {
+		return bdao.list(bcount);
+	}
+	
+	@Override
+	public int totalPage() throws Exception {
+		return bdao.readAll();
 	}
 
 }

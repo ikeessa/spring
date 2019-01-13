@@ -13,5 +13,7 @@ public interface BbsDAO {
 	
 	public void delete(Integer bid) throws Exception;
 	
-	public List<BbsVO> list() throws Exception;
+	public List<BbsVO> list(Integer bcount) throws Exception;
+	
+	public int readAll() throws Exception;
 }

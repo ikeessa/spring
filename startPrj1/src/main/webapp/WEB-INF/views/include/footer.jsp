@@ -33,6 +33,7 @@
 	<script src="/resources/assets/js/zabuto_calendar.js"></script>
 
 	<script type="text/javascript">
+		/* 상단에 메세지 출력 
 		$(document)
 				.ready(
 						function() {
@@ -53,7 +54,7 @@
 									});
 
 							return false;
-						});
+						}); */
 	</script>
 
 	<script type="application/javascript">

@@ -13,63 +13,92 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.service.BbsService;
 import com.spring.vo.BbsVO;
+import com.spring.vo.Page;
 
 @Controller
 @RequestMapping("/bbs/*")
 public class BbsController {
 
 	private static final Logger logger = LoggerFactory.getLogger(BbsController.class);
-	
+
 	@Inject
 	private BbsService bsvc;
-	
-	@RequestMapping(value = "/write",method=RequestMethod.GET)
-	public void writeGet() throws Exception{ 
+
+	@RequestMapping(value = "/write", method = RequestMethod.GET)
+	public void writeGet() throws Exception {
 		logger.info("게시글 입력 get");
 	}
-	
-	@RequestMapping(value = "/write",method=RequestMethod.POST)
-	public String writePost(BbsVO bvo, RedirectAttributes reAttr) throws Exception{ 
+
+	@RequestMapping(value = "/write", method = RequestMethod.POST)
+	public String writePost(BbsVO bvo, RedirectAttributes reAttr) throws Exception {
 		logger.info("게시글 입력 post");
 		logger.info(bvo.toString());
-		
+
 		bsvc.write(bvo);
-		reAttr.addFlashAttribute("result","Success");
-		
-		//return "/bbs/resultOk";
+		reAttr.addFlashAttribute("result", "Success");
+
+		// return "/bbs/resultOk";
 		return "redirect:/bbs/list";
 	}
-	
+
 	@RequestMapping("list")
 	public void list(Model model) throws Exception {
 		logger.info("게시판 목록");
-		model.addAttribute("list",bsvc.list());
+
+		Page page = new Page();
+		double pageCount=0;
+		int listView=0;
+		page.setListCount(10);
+		page.setPageSize(5);
+		page.setTotalPage(bsvc.totalPage());
+		pageCount = Math.ceil((double) page.getTotalPage()/page.getListCount());
+		listView = (page.getTotalPage()/page.getListCount())*10+(page.getTotalPage()%page.getListCount());
+		
+		//paging.setTotalCount(totalCount);
+		logger.info("전체 페이지 수 : "+page.getTotalPage());
+		model.addAttribute("list", bsvc.list(listView));
 	}
-	
+
 	@RequestMapping("read")
-	public void read(@RequestParam("bid") int bid,Model model) throws Exception{
+	public void read(@RequestParam("bid") int bid, Model model) throws Exception {
 		logger.info("게시판 redad");
-		model.addAttribute("bbsVO",bsvc.read(bid));
+		model.addAttribute("bbsVO", bsvc.read(bid));
 	}
-	
+
 	@RequestMapping("modify")
-	public void modify(BbsVO bbsVO) throws Exception{
+	public void modify(BbsVO bbsVO) throws Exception {
 		logger.info("게시판 modify");
 	}
-	
+
 	@RequestMapping("modifyOk")
-	public String modifyOk(BbsVO bbsVO) throws Exception{
+	public String modifyOk(BbsVO bbsVO) throws Exception {
 		logger.info("게시판 modifyOk");
 		logger.info(bbsVO.toString());
 		bsvc.modify(bbsVO);
 		return "redirect:/bbs/list";
 	}
-	
+
 	@RequestMapping("remove")
-	public String remove(@RequestParam("bid") int bid,Model model) throws Exception{
+	public String remove(@RequestParam("bid") int bid, Model model) throws Exception {
 		logger.info("게시판 delete");
 		bsvc.remove(bid);
 		return "redirect:/bbs/list";
 	}
-	
+
+	/*@RequestMapping(value = "list", method = RequestMethod.GET)
+	public ModelAndView list(Sample sample) throws Exception {
+		try {
+			// (Before) Doing...
+
+			Paging paging = new Paging();
+			paging.setPageNo(1);
+			paging.setPageSize(10);
+			paging.setTotalCount(totalCount);
+
+			// (After) Doing...
+		} catch (Exception e) {
+			throw e;
+		}
+	}*/
+
 }

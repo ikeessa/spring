@@ -36,8 +36,13 @@ public class BbsDAOImpl implements BbsDAO {
 	}
 
 	@Override
-	public List<BbsVO> list() throws Exception {
+	public List<BbsVO> list(Integer bcount) throws Exception {
 		return sqlSession.selectList("list");
+	}
+	
+	@Override
+	public int readAll() throws Exception {
+		return sqlSession.selectOne("readAll");
 	}
 
 }

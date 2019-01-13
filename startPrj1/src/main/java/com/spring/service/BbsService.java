@@ -13,5 +13,7 @@ public interface BbsService {
 	
 	public void remove(Integer bid) throws Exception;
 	
-	public List<BbsVO> list() throws Exception;
+	public List<BbsVO> list(Integer bcount) throws Exception;
+	
+	public int totalPage() throws Exception;
 }
