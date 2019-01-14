@@ -32,7 +32,9 @@ https://github.com/ikeessa/asp/blob/master/ASP/index.do
 처음에 acro editor 를 이용해 db insert value 값에 각각의 엑셀의 열을 넣고 insert 하는 식으로 하였지만 </br>
 반복작업이 너무 심해서 프로그램을 만들었습니다.</br>
 엑셀의 각 셀이 탭으로 구분 되어있고 줄이 내려가면 엔터로 되어있기 때문에 탭과 엔터를 split으로 잘라서 </br>
-해당 내용들을 각 칼럼에 맞게 버튼 클릭시 한꺼번에 insert 되도록 하는 프로그램을 만들었습니다.
+해당 내용들을 각 칼럼에 맞게 버튼 클릭시 한꺼번에 insert 되도록 하는 프로그램을 만들었습니다. </br>
+https://github.com/ikeessa/asp/blob/master/ASP/insert.do </br>
+https://github.com/ikeessa/asp/blob/master/ASP/insert_proc.do
 
 4.기타 업무
 ![default](https://user-images.githubusercontent.com/21051557/50974606-faaf9280-152e-11e9-910a-cd441c53db03.png)
