@@ -1,11 +1,20 @@
 # Introduction
-대학교 3학년 마치고 휴학중 2018년 IT 회사 인턴으로 일하면서 프로그래밍에 재미를 느끼기  시작하였습니다. </br>
+대학교 3학년 마치고 휴학중 2018년 IT 회사 인턴으로 일하면서 프로그래밍에 재미를 느끼기 시작하였습니다. </br>
 2019년 1월 현재 대학교 4학년 1학기를 마치고 스프링을 공부하면서 취업 활동을 하고 있습니다. </br>
 아직 2학기가 시작하지 않았기 때문에 졸업증명서 와 성적증명서는 제출하기 어렵습니다.  </br>
 아래의 ASP 프로젝트들은 인턴 생활하면서  공부하면서 만들었습니다.
 
-# Spring Project
 
+# 프로젝트 개발 환경
+OS - Win10</br>
+IDE - Eclipse(VERSION : Oxygen)</br>
+Language - JAVA(VERSION : JDK 1.8),JSTL(2.5),JSP,HTML5,BOOTSTRAP TEMPLATE(DASHGUM)</br>
+미들웨어 - TOMCAT(VERSION : 8.0)</br>
+DBMS - MySQL (VERSION : 5.6.42)</br>
+FRAMEWORK : SPRING@MVC (VERSION :4.1.6)</br>
+ORM : MYBATIS (VERSION : 1.2.2)
+
+# Spring Project
 1.게시판 만들기
 ![default](https://user-images.githubusercontent.com/21051557/51041208-c2768580-15fc-11e9-9718-2d440107b396.PNG)
 ![default](https://user-images.githubusercontent.com/21051557/51041209-c2768580-15fc-11e9-9eb4-6bbd6730e9b9.png)
