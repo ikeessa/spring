@@ -5,7 +5,7 @@
 아래의 ASP 프로젝트들은 인턴 생활하면서  공부하면서 만들었습니다.
 
 
-# 프로젝트 개발 환경
+# 스프링 프로젝트 개발 환경
 OS - Win10</br>
 IDE - Eclipse(VERSION : Oxygen)</br>
 Language - JAVA(VERSION : JDK 1.8),JSTL(2.5),JSP,HTML5,BOOTSTRAP TEMPLATE(DASHGUM)</br>
