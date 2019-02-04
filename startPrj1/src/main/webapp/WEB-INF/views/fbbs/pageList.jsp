@@ -20,11 +20,15 @@
 	                              <div type="hidden" class="col-sm-5">
 	                              </div>
 	                              <div class="col-sm-1">
-								    <select class="form-control">
-									  <option value="title_content">제목+내용</option>
-									  <option value="writer">작성자</option>
-									  <option value="re_content">댓글 내용</option>
-									  <option value="re_writer">댓글 작성자</option>
+								    <select name="findType" class="form-control">
+									  <option value="title_content"
+									  	<c:out value="fCri.findType =='title_content'? selected : ''"/>>제목+내용</option>
+									  <option value="writer"
+									  	<c:out value="fCri.findType =='writer'? selected : ''"/>>작성자</option>
+									  <option value="re_content"
+									  	<c:out value="fCri.findType =='re_content'? selected : ''"/>>댓글 내용</option>
+									  <option value="re_writer"
+									  	<c:out value="fCri.findType =='re_writer'? selected : ''"/>>댓글 작성자</option>
 									</select>
 								  </div>
 	                              <div class="col-sm-2">
