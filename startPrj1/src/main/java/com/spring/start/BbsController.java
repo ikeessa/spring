@@ -14,6 +14,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.spring.service.BbsService;
 import com.spring.vo.BbsVO;
 import com.spring.vo.Page;
+import com.spring.vo.PageCriteria;
+import com.spring.vo.PagingMaker;
 
 @Controller
 @RequestMapping("/bbs/*")
@@ -23,7 +25,7 @@ public class BbsController {
 
 	@Inject
 	private BbsService bsvc;
-
+	
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public void writeGet() throws Exception {
 		logger.info("게시글 입력 get");
@@ -46,22 +48,29 @@ public class BbsController {
 		logger.info("게시판 목록");
 
 		Page page = new Page();
-		double pageCount=0;
-		int listView=0;
+		logger.info("1");
+		double pageCount = 0;
+		int listView = 0;
+		logger.info("2");
 		page.setListCount(10);
 		page.setPageSize(5);
-		page.setTotalPage(bsvc.totalPage());
-		pageCount = Math.ceil((double) page.getTotalPage()/page.getListCount());
-		listView = (page.getTotalPage()/page.getListCount())*10+(page.getTotalPage()%page.getListCount());
-		
-		//paging.setTotalCount(totalCount);
-		logger.info("전체 페이지 수 : "+page.getTotalPage());
+		logger.info("3");
+		// page.setTotalPage(bsvc.totalPage());
+		//logger.info(page.getTotalPage());
+		System.out.println(page.getTotalPage());
+		logger.info("4");
+		pageCount = Math.ceil((double) page.getTotalPage() / page.getListCount());
+		logger.info("5");
+		listView = (page.getTotalPage() / page.getListCount()) * 10 + (page.getTotalPage() % page.getListCount());
+
+		// paging.setTotalCount(totalCount);
+		logger.info("전체 페이지 수 : " + page.getTotalPage());
 		model.addAttribute("list", bsvc.list(listView));
 	}
 
 	@RequestMapping("read")
 	public void read(@RequestParam("bid") int bid, Model model) throws Exception {
-		logger.info("게시판 redad");
+		logger.info("게시판 read");
 		model.addAttribute("bbsVO", bsvc.read(bid));
 	}
 
@@ -85,20 +94,33 @@ public class BbsController {
 		return "redirect:/bbs/list";
 	}
 
-	/*@RequestMapping(value = "list", method = RequestMethod.GET)
-	public ModelAndView list(Sample sample) throws Exception {
-		try {
-			// (Before) Doing...
-
-			Paging paging = new Paging();
-			paging.setPageNo(1);
-			paging.setPageSize(10);
-			paging.setTotalCount(totalCount);
-
-			// (After) Doing...
-		} catch (Exception e) {
-			throw e;
-		}
-	}*/
+	/*
+	 * @RequestMapping(value = "list", method = RequestMethod.GET) public
+	 * ModelAndView list(Sample sample) throws Exception { try { // (Before)
+	 * Doing...
+	 * 
+	 * Paging paging = new Paging(); paging.setPageNo(1); paging.setPageSize(10);
+	 * paging.setTotalCount(totalCount);
+	 * 
+	 * // (After) Doing... } catch (Exception e) { throw e; } }
+	 */
+	
+	@RequestMapping("/pageList")
+	public void pageList(PageCriteria pageCri, Model model) throws Exception {
+		logger.info("게시판 Criteria");
+		//bsvc.listCriteria(pageCri);
+		model.addAttribute("list", bsvc.listCriteria(pageCri));
+		
+		PagingMaker pagingMaker = new PagingMaker();
+		pagingMaker.setpageCria(pageCri);
+		pagingMaker.setTotalData(bsvc.totalPage());
+		pagingMaker.getPagingData();
+		
+		System.out.println("전체페이지 수  db 연동:"+bsvc.totalPage());
+		System.out.println("전체페이지 수 :"+pagingMaker.getTotalData());
+		System.out.println("start페이지 :"+pagingMaker.getStartPage());
+		System.out.println("end페이지 :"+pagingMaker.getEndPage());
+		model.addAttribute("pagingMaker", pagingMaker);
+	}
 
 }

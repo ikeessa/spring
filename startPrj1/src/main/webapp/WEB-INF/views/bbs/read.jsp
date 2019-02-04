@@ -28,6 +28,8 @@
 				<div class="form-panel">
 					<form class="form-horizontal style-form" method="post" action="/bbs/modify">
 						<input type="hidden" name="bid" value="${bbsVO.bid}" />
+						<input type="hidden" name="page" value="${pCri.page}" />
+                		<input type="hidden" name="numPerPage" value="${pCri.numPerPage}" />
 						<h4 class="mb">
 							<i class="fa fa-angle-right"></i> 조회내용
 						</h4>
@@ -58,7 +60,7 @@
 							<div class="col-sm-12" align="center">
 								<button type="submit" id="btn_modify" class="btn btn-primary">수정하기</button>&nbsp;
 								<button type="button" class="btn btn-danger" onclick="location.href='/bbs/remove?bid=${bbsVO.bid}'">삭제하기</button>&nbsp;
-								<button type="button" class="btn btn-info" onclick="location.href='/bbs/list'">목록으로</button>
+								<button type="button" class="btn btn-info" onclick="location.href='/bbs/pageList'">목록으로</button>
 							</div>
 						</div>
 					</form>

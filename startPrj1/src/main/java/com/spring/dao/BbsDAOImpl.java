@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.spring.vo.BbsVO;
+import com.spring.vo.PageCriteria;
 
 @Repository
 public class BbsDAOImpl implements BbsDAO {
@@ -44,5 +45,20 @@ public class BbsDAOImpl implements BbsDAO {
 	public int readAll() throws Exception {
 		return sqlSession.selectOne("readAll");
 	}
-
+	
+	/*@Override
+	public List<BbsVO> listPage(int page) throws Exception {
+		if(page <=0){
+			page=1;
+		}
+		
+		page = (page-1) * 10;
+		
+		return sqlSession.selectList("listPage",page);
+	}*/
+	
+	@Override
+	public List<BbsVO> listCriteria(PageCriteria pageCri) throws Exception {
+		return sqlSession.selectList("listCriteria",pageCri);
+	}
 }

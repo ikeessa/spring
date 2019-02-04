@@ -25,13 +25,25 @@
 
 	<select id="list" resultType="com.spring.vo.BbsVO">
   		<![CDATA[
-  		SELECT * FROM TBL_BOARD WHERE BID > 0 ORDER BY BID DESC, REGDATE DESC
+  		SELECT * FROM TBL_BOARD WHERE BID > 0 ORDER BY BID DESC, REGDATE DESC;
   		]]>
 	</select>
 
-	<select id="readAll" resultType="com.spring.vo.BbsVO">
+	<!-- <select id="listPage" resultType="com.spring.vo.BbsVO">
   		<![CDATA[
-  		SELECT COUNT(*) FROM TBL_BOARD
+  		SELECT * FROM TBL_BOARD WHERE BID > 0 ORDER BY BID DESC, REGDATE DESC limit #{page}, 10;
+  		]]>
+	</select> -->
+	
+	<select id="listCriteria" resultType="com.spring.vo.BbsVO">
+  		<![CDATA[
+  		SELECT * FROM TBL_BOARD WHERE BID > 0 ORDER BY BID DESC, REGDATE DESC limit #{startPage}, #{numPerPage};
+  		]]>
+	</select>
+
+	<select id="readAll" resultType="int">
+  		<![CDATA[
+  		SELECT COUNT(bid) totalPage FROM TBL_BOARD WHERE BID > 0
   		]]>
 	</select>
 
