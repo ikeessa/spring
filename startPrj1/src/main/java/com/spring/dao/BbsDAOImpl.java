@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.spring.vo.BbsVO;
+import com.spring.vo.FindCriteria;
 import com.spring.vo.PageCriteria;
 
 @Repository
@@ -60,5 +61,14 @@ public class BbsDAOImpl implements BbsDAO {
 	@Override
 	public List<BbsVO> listCriteria(PageCriteria pageCri) throws Exception {
 		return sqlSession.selectList("listCriteria",pageCri);
+	}
+	@Override
+	public List<BbsVO> listFind(FindCriteria findCri) throws Exception{
+		return sqlSession.selectList("listFind",findCri);
+	}
+	
+	@Override
+	public int findCountData(FindCriteria findCri) throws Exception{
+		return sqlSession.selectOne("findCountData",findCri);
 	}
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.dao.BbsDAO;
 import com.spring.vo.BbsVO;
+import com.spring.vo.FindCriteria;
 import com.spring.vo.PageCriteria;
 
 @Service
@@ -47,8 +48,19 @@ public class BbsServiceImpl implements BbsService {
 	}
 	
 	@Override
+	public List<BbsVO> listFind(FindCriteria findCri) throws Exception {
+		return bdao.listFind(findCri);
+	}
+	
+	@Override
 	public int totalPage() throws Exception {
 		return bdao.readAll();
 	}
+	
+	@Override
+	public int findCountData(FindCriteria findCri) throws Exception {
+		return bdao.findCountData(findCri);
+	}
+	
 
 }

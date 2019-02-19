@@ -13,6 +13,7 @@ public class PagingMaker {
 	private int PageNum = 10;
 	
 	private PageCriteria pageCri;
+	//private FindCriteria findCri;
 	
 	public void setpageCria(PageCriteria pageCri) {
 		this.pageCri = pageCri; 
@@ -27,20 +28,31 @@ public class PagingMaker {
 		
 		startPage = (endPage - PageNum)+1;
 		
-		int finalEndPage = (int) (Math.ceil(totalData/(double)pageCri.getNumperPage()));
+		int finalEndPage = (int) (Math.ceil(totalData/(double)pageCri.getNumPerPage()));
 		
 		if(endPage > finalEndPage) {
 			endPage = finalEndPage;
 		}
 	
 	prev = startPage ==1? false : true;
-	next = endPage * pageCri.getNumperPage() >= totalData ? false : true;
+	next = endPage * pageCri.getNumPerPage() >= totalData ? false : true;
 	}
 	
-	public String makeURI(int page) {
+	public String makeURI(int page){
 		UriComponents uriComponents = UriComponentsBuilder.newInstance()
 				.queryParam("page", page)
-				.queryParam("numPerPage", pageCri.getNumperPage())
+				.queryParam("numPerPage", pageCri.getNumPerPage())
+				.queryParam("findType", ((FindCriteria) pageCri).getFindType())
+				.queryParam("keyword", ((FindCriteria) pageCri).getKeyword())
+				.build();
+		
+		return uriComponents.toUriString();
+	}
+	
+	public String makeURISearch(int page) {
+		UriComponents uriComponents = UriComponentsBuilder.newInstance()
+				.queryParam("page", page)
+				.queryParam("numPerPage", pageCri.getNumPerPage())
 				.build();
 		
 		return uriComponents.toUriString();

@@ -22,16 +22,16 @@ public class PageCriteria {
 		this.page = page;
 	}
 
-	public int getNumperPage() {
+	public int getNumPerPage() {
 		return numPerPage;
 	}
 
-	public void setNumperPage(int numperPage) {
-		if(numperPage <=0) {
+	public void setNumPerPage(int numPerPage) {
+		if(numPerPage <=0) {
 			this.numPerPage =10;
 			return;
 		}
-		this.numPerPage = numperPage;
+		this.numPerPage = numPerPage;
 	}
 	
 	public int getStartPage() {

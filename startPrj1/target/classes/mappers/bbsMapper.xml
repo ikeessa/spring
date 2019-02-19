@@ -36,9 +36,7 @@
 	</select> -->
 	
 	<select id="listCriteria" resultType="com.spring.vo.BbsVO">
-  		<![CDATA[
   		SELECT * FROM TBL_BOARD WHERE BID > 0 ORDER BY BID DESC, REGDATE DESC limit #{startPage}, #{numPerPage};
-  		]]>
 	</select>
 
 	<select id="readAll" resultType="int">
@@ -46,7 +44,37 @@
   		SELECT COUNT(bid) totalPage FROM TBL_BOARD WHERE BID > 0
   		]]>
 	</select>
-
-
+	<sql id="findSql">
+		<if test="findType != null">
+			<if test="findType == 'title_content'">
+				AND (SUBJECT LIKE CONCAT('%',#{keyword},'%') 
+				OR CONTENT LIKE CONCAT('%',#{keyword},'%'))	
+			</if>
+			<if test="findType == 'writer'">
+				AND WRITER LIKE CONCAT('%',#{keyword},'%')	
+			</if>
+			<!-- <if test="findType == 're_content'">
+				AND SUBJECT LIKE CONCAT('%',#{keyword},'%')	
+			</if>
+			<if test="findType == 're_writer'">
+				AND SUBJECT LIKE CONCAT('%',#{keyword},'%')	
+			</if> -->
+		</if>
+	</sql>
+	<select id="listFind" resultType="com.spring.vo.BbsVO">
+		<![CDATA[
+  		SELECT * FROM TBL_BOARD WHERE BID > 0
+  		]]>
+  		<include refid="findSql"></include>
+  		
+  		ORDER BY BID DESC, REGDATE DESC limit #{startPage}, #{numPerPage};
+	</select>
+	
+	<select id="findCountData" resultType="int">
+		<![CDATA[
+		SELECT COUNT(bid) totalPage FROM TBL_BOARD WHERE BID > 0
+		]]>
+		<include refid="findSql"></include>
+	</select>
 
 </mapper>		

@@ -95,7 +95,3 @@
     
 	
 	</script>
-
-
-</body>
-</html>

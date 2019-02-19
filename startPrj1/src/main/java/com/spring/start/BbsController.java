@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.service.BbsService;
 import com.spring.vo.BbsVO;
+import com.spring.vo.FindCriteria;
 import com.spring.vo.Page;
 import com.spring.vo.PageCriteria;
 import com.spring.vo.PagingMaker;
@@ -27,7 +29,7 @@ public class BbsController {
 	private BbsService bsvc;
 	
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
-	public void writeGet() throws Exception {
+	public void writeGet(@RequestParam("fCri") FindCriteria fCri) throws Exception {
 		logger.info("게시글 입력 get");
 	}
 
@@ -40,7 +42,7 @@ public class BbsController {
 		reAttr.addFlashAttribute("result", "Success");
 
 		// return "/bbs/resultOk";
-		return "redirect:/bbs/list";
+		return "redirect:/bbs/pageList";
 	}
 
 	@RequestMapping("list")
@@ -84,14 +86,14 @@ public class BbsController {
 		logger.info("게시판 modifyOk");
 		logger.info(bbsVO.toString());
 		bsvc.modify(bbsVO);
-		return "redirect:/bbs/list";
+		return "redirect:/bbs/pageList";
 	}
 
 	@RequestMapping("remove")
 	public String remove(@RequestParam("bid") int bid, Model model) throws Exception {
 		logger.info("게시판 delete");
 		bsvc.remove(bid);
-		return "redirect:/bbs/list";
+		return "redirect:/bbs/pageList";
 	}
 
 	/*
@@ -108,7 +110,6 @@ public class BbsController {
 	@RequestMapping("/pageList")
 	public void pageList(PageCriteria pageCri, Model model) throws Exception {
 		logger.info("게시판 Criteria");
-		//bsvc.listCriteria(pageCri);
 		model.addAttribute("list", bsvc.listCriteria(pageCri));
 		
 		PagingMaker pagingMaker = new PagingMaker();

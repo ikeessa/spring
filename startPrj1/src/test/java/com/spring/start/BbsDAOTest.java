@@ -10,12 +10,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.web.util.UriComponents;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import com.spring.dao.BbsDAO;
 import com.spring.vo.BbsVO;
-import com.spring.vo.PageCriteria;
+import com.spring.vo.FindCriteria;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/**/*.xml"})
@@ -82,4 +80,21 @@ public class BbsDAOTest {
 		logger.info(uriComponents.toString());
 	}
 	*/
+	@Test
+	public void testFind() throws Exception{
+		FindCriteria cri = new FindCriteria();
+		cri.setPage(1);
+		cri.setFindType("title_content");
+		cri.setKeyword("subject5");
+		
+		logger.info("*********테스트 글 목록 출력**********");
+		System.out.println(bdao.listFind(cri));
+		List<BbsVO> list = bdao.listFind(cri);
+		
+		for(BbsVO bvo: list) {
+			logger.info(bvo.getBid() + ": "+bvo.getSubject());
+		}
+		logger.info("*** 테스트  Data 갯수 출력 ******");
+		System.out.println("CountData : " + bdao.findCountData(cri));
+	}
 }

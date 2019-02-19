@@ -12,7 +12,9 @@
 		  		<div class="row mt">
 			  		<div class="col-lg-12">
                       <div class="content-panel">
-                      	<form class="form-horizontal style-form" method="get" action="/bbs/pageList">
+                      	<!-- <form class="form-horizontal style-form" method="get" action="/bbs/pageList"> -->
+                      		<%-- <input type="hidden" name="page" value="${pCri.page}" />
+                			<input type="hidden" name="numPerPage" value="${pCri.numPerPage}" /> --%>	
 		                      <div class="form-group">
 	                              <label class="col-sm-2 col-sm-2 control-label">
 	                              	<h4><i class="fa fa-angle-right"></i> 게시판 목록</h4>
@@ -22,26 +24,26 @@
 	                              <div class="col-sm-1">
 								    <select name="findType" class="form-control">
 									  <option value="title_content"
-									  	<c:out value="fCri.findType =='title_content'? selected : ''"/>>제목+내용</option>
+									  	<c:out value="${fCri.findType =='title_content'? 'selected' : ''}"/>>제목+내용</option>
 									  <option value="writer"
-									  	<c:out value="fCri.findType =='writer'? selected : ''"/>>작성자</option>
+									  	<c:out value="${fCri.findType =='writer'? 'selected' : ''}"/>>작성자</option>
 									  <option value="re_content"
-									  	<c:out value="fCri.findType =='re_content'? selected : ''"/>>댓글 내용</option>
+									  	<c:out value="${fCri.findType =='re_content'? 'selected' : ''}"/>>댓글 내용</option>
 									  <option value="re_writer"
-									  	<c:out value="fCri.findType =='re_writer'? selected : ''"/>>댓글 작성자</option>
+									  	<c:out value="${fCri.findType =='re_writer'? 'selected' : ''}"/>>댓글 작성자</option>
 									</select>
 								  </div>
 	                              <div class="col-sm-2">
-	                                  <input type="text" class="form-control">
+	                                  <input type="text" name="keyword" id="findword" class="form-control" value="${fCri.keyword}">
 	                              </div>
 	                              <div class="col-sm-1">
-	                              	<button type="submit" class="btn btn-theme03">검색 </button>
+	                              	<button id="findBtn" class="btn btn-theme03">검색 </button>
 	                              </div>
 	                              <div class="col-sm-1">
-	                              	<button type="type" class="btn btn-theme02" onclick="window.location.href='/bbs/write'">글쓰기 </button>
+	                              	<button class="btn btn-theme02" onclick="window.location.href='/bbs/write${pagingMaker.makeURI(pagingMaker.pageCri.page)}'">글쓰기 </button>
 	                              </div>
 							</div>
-						</form>
+						<!-- </form> -->
                           <section id="unseen">
                             <table class="table table-bordered table-striped table-condensed">
                               <thead>
@@ -75,7 +77,6 @@
 							  	<button type="button" class="btn btn-theme03">◀</button>
 							  </a>
 							</c:if>
-							
 							<c:forEach begin="${pagingMaker.startPage}" end="${pagingMaker.endPage}" var="pNum">
 							  <a href ="pageList${pagingMaker.makeURI(pNum)}">
 								<button type="button" class="<c:out value="${pagingMaker.pageCri.page == pNum?'btn btn-theme':'btn btn-default'}"/>">${pNum}</button>
@@ -96,8 +97,15 @@
 
 		</section><! --/wrapper -->
       </section><!-- /MAIN CONTENT -->
-
+      </body>
+      </html>
+	<%@include file="../include/footer.jsp" %>
       <script>
+      		$('#findBtn').click(function(e){
+      			console.log("클릭");
+      			self.location="pageList"+"${pagingMaker.makeURISearch(1)}"
+      			+"&keyword="+$("#findword").val()+"&findType="+$(":selected").val();
+      		});
       	console.log('starpage:'+${pagingMaker.startPage});
       	console.log('endpage:'+${pagingMaker.endPage});
       
@@ -108,4 +116,3 @@
       	}
       </script>
       
-<%@include file="../include/footer.jsp" %>

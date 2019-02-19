@@ -36,7 +36,7 @@
                           </div>                              
                           <div class="form-group">
                           	<div class="col-sm-12" align="center">
-                          	  <button type="button" class="btn btn-info" onclick="location.href='/bbs/pageList'">목록으로</button>	    
+                          	  <button type="button" class="btn btn-info" onclick="location.href='/fbbs/pageList${pagingMaker.makeURI(pagingMaker.pageCri.page)}'">목록으로</button>	    
                               <button type="submit" class="btn btn-theme">등록하기</button>
                             </div>  
                           </div>  
