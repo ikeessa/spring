@@ -22,7 +22,7 @@ public class FindController {
 	private BbsService bsvc;
 	
 	@RequestMapping("pageList")
-	public void list(@RequestParam("fCri") FindCriteria fCri, Model model) throws Exception{
+	public void list(FindCriteria fCri, Model model) throws Exception{
 		logger.info(fCri.toString());
 		
 		model.addAttribute("list",bsvc.listFind(fCri));
