@@ -29,8 +29,25 @@ public class BbsController {
 	private BbsService bsvc;
 	
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
-	public void writeGet(@RequestParam("fCri") FindCriteria fCri) throws Exception {
+	public void writeGet(
+					   /*@RequestParam(value="page", defaultValue="false") int page
+						,@RequestParam(value="numPerPage", defaultValue="false") int numPerPage
+						,@RequestParam(value="findType", defaultValue="false") String findType
+						,@RequestParam(value="keyword", defaultValue="false") String keyword
+						,*/
+						Model model,FindCriteria fCri) throws Exception {
 		logger.info("게시글 입력 get");
+		/*model.addAttribute("page" ,page);
+		model.addAttribute("numPerPage" ,numPerPage);
+		model.addAttribute("findType" ,findType);
+		model.addAttribute("keyword" ,keyword);*/
+		
+		PagingMaker pagingMaker = new PagingMaker();
+		pagingMaker.setPageCri(fCri);
+		pagingMaker.setTotalData(bsvc.findCountData(fCri));
+		pagingMaker.getPagingData();
+		
+		model.addAttribute("pagingMaker", pagingMaker);
 	}
 
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
@@ -71,9 +88,16 @@ public class BbsController {
 	}
 
 	@RequestMapping("read")
-	public void read(@RequestParam("bid") int bid, Model model) throws Exception {
+	public void read(@RequestParam("bid") int bid, Model model,FindCriteria fCri) throws Exception {
 		logger.info("게시판 read");
 		model.addAttribute("bbsVO", bsvc.read(bid));
+		
+		PagingMaker pagingMaker = new PagingMaker();
+		pagingMaker.setPageCri(fCri);
+		pagingMaker.setTotalData(bsvc.findCountData(fCri));
+		pagingMaker.getPagingData();
+		
+		model.addAttribute("pagingMaker", pagingMaker);
 	}
 
 	@RequestMapping("modify")
@@ -86,14 +110,24 @@ public class BbsController {
 		logger.info("게시판 modifyOk");
 		logger.info(bbsVO.toString());
 		bsvc.modify(bbsVO);
-		return "redirect:/bbs/pageList";
+		return "redirect:/fbbs/pageList";
 	}
 
 	@RequestMapping("remove")
-	public String remove(@RequestParam("bid") int bid, Model model) throws Exception {
+	public String remove(@RequestParam("bid") int bid, Model model,FindCriteria fCri) throws Exception {
 		logger.info("게시판 delete");
 		bsvc.remove(bid);
-		return "redirect:/bbs/pageList";
+		
+		PagingMaker pagingMaker = new PagingMaker();
+		pagingMaker.setPageCri(fCri);
+		pagingMaker.setTotalData(bsvc.findCountData(fCri));
+		pagingMaker.getPagingData();
+		
+		logger.info("pagingMaker : "+pagingMaker.makeURI(pagingMaker.pageCri.getPage()));
+		logger.info("redirect:/fbbs/pageList"+pagingMaker.makeURI(pagingMaker.pageCri.getPage()));
+		return "redirect:/fbbs/pageList"+pagingMaker.makeURI(pagingMaker.pageCri.getPage());
+		
+		
 	}
 
 	/*

@@ -23,6 +23,7 @@ public class FindController {
 	
 	@RequestMapping("pageList")
 	public void list(FindCriteria fCri, Model model) throws Exception{
+		logger.info("--------------fCri.toString()---------------");
 		logger.info(fCri.toString());
 		
 		model.addAttribute("list",bsvc.listFind(fCri));
@@ -31,7 +32,6 @@ public class FindController {
 		//PageCriteria pCri = new PageCriteria();
 		
 		pagingMaker.setPageCri(fCri);
-		
 		pagingMaker.setTotalData(bsvc.findCountData(fCri));
 		pagingMaker.getPagingData();
 		

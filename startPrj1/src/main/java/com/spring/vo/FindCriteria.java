@@ -19,6 +19,6 @@ public class FindCriteria extends PageCriteria { //page, numberPage 값 유지�
 	
 	@Override
 	public String toString() {
-		return super.toString()+"type:"+getFindType()+", keyword"+getKeyword();
+		return super.toString()+"type:"+getFindType()+", keyword:"+getKeyword();
 	}
 }

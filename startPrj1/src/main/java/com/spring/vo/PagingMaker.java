@@ -12,7 +12,7 @@ public class PagingMaker {
 	
 	private int PageNum = 10;
 	
-	private PageCriteria pageCri;
+	public PageCriteria pageCri;
 	//private FindCriteria findCri;
 	
 	public void setpageCria(PageCriteria pageCri) {

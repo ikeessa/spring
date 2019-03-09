@@ -93,7 +93,7 @@
 		
 		//$("#btn_cancel").on("click", function(){
 		$(".btn-warning").on("click", function(){
-			self.location="/bbs/list";
+			self.location="/fbbs/list";
 		})
 	});
 				
