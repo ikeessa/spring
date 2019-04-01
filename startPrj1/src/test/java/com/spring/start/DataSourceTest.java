@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/*.xml")
 public class DataSourceTest {
 
-	@Inject // 주입 따로 생성할 필요 없음
+	//@Inject  주입 따로 생성할 필요 없음
 	private DataSource dataSource;
 
 	@Test
