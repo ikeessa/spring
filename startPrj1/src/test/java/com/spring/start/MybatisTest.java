@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/*.xml")
 public class MybatisTest {
 	
-	@Inject
+	//@Inject
 	private SqlSessionFactory sqlFactory;
 	
 	@Test

@@ -10,8 +10,6 @@ import com.spring.vo.MemberVO;
 @Repository //DAO를 스프링에 인식하겟다.
 public class MemberDAOImpl implements MemberDAO {
 	
-	//private static final String namespace="com.spring.MemberMapper";
-	
 	@Inject
 	private SqlSession sqlSession;
 	
@@ -26,5 +24,4 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSession.insert("insertMember",mvo);
 		//sqlSession.selectOne(namespace+".insertMember",mvo);
 	}
-
 }

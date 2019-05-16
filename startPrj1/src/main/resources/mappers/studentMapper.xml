@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.dao.StudentDAO">
+    <insert id="insert">
+		insert into tbl_student (student_id, student_pwd,student_name, student_code, student_email) values
+		(#{id},#{pwd},#{name},#{code},#{email})
+	</insert>
+
+    <select id="read" resultType="com.spring.vo.BbsVO">
+		SELECT BID, SUBJECT,CONTENT,WRITER,REGDATE,HIT FROM TBL_BOARD WHERE
+		BID=#{bid}
+	</select>
+
+    <update id="update">
+		UPDATE TBL_BOARD SET SUBJECT=#{subject},CONTENT=#{content},WRITER=#{writer}
+		WHERE BID=#{bid}
+	</update>
+
+    <delete id="delete">
+		DELETE FROM TBL_BOARD WHERE BID=#{bid}
+	</delete>
+
+    <select id="list" resultType="com.spring.vo.BbsVO">
+  		<![CDATA[
+  		SELECT * FROM TBL_BOARD WHERE BID > 0 ORDER BY BID DESC, REGDATE DESC;
+  		]]>
+	</select>
+</mapper>
