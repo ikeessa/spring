@@ -4,6 +4,15 @@ public class SeatVO {
 
     private  int seat_num;
     private  String seat_status;
+    private  String seat_sex;
+
+    public String getSeat_sex() {
+        return seat_sex;
+    }
+
+    public void setSeat_sex(String seat_sex) {
+        this.seat_sex = seat_sex;
+    }
 
     public int getSeat_num() {
         return seat_num;

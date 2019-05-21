@@ -3,10 +3,12 @@ package com.spring.dao;
 import com.spring.vo.BbsVO;
 import com.spring.vo.StudentVO;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
 import javax.inject.Inject;
 import java.util.List;
 
+@Repository
 public class StudentDAO {
     @Inject
     private SqlSession sqlSession; //db 연동

@@ -48,32 +48,34 @@
                         </div>
                         <div class="modal-body">
                             <div class="login-wrap">
-                                <input type="text" class="form-control" placeholder="User ID" autofocus=""> <br>
-                                <input type="password" class="form-control" placeholder="Password"> <br>
-                                <input type="text" class="form-control" placeholder="이름" autofocus=""> <br>
-                                <input type="number" class="form-control" placeholder="학번" autofocus=""> <br>
-                                <input type="text" class="form-control" placeholder="이메일" autofocus=""> <br>
-                                <%--<div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-secondary">
-                                    <input type="radio" name="options" id="option1" autocomplete="off"> 남자
-                                </label>
-                                <label class="btn btn-secondary">
-                                    <input type="radio" name="options" id="option2" autocomplete="off"> 여자
-                                </label>
-                            </div>--%>
-                                <p><strong>성별</strong></p>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" name="jb-radio" id="jb-radio-1" class="custom-control-input">
-                                    <label class="custom-control-label" for="jb-radio-1">남자</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" name="jb-radio" id="jb-radio-2" class="custom-control-input">
-                                    <label class="custom-control-label" for="jb-radio-2">여자</label>
-                                </div>
-                                <br>
-                                <button id="signUpBtn" class="btn btn-theme btn-block" href="index.html" type="submit">
-                                    <i class="fa fa-lock"></i> SIGN UP
-                                </button>
+                                <form action="signUp" id="signUp_form">
+                                    <input type="text" class="form-control" placeholder="User ID" name="student_id" autofocus=""> <br>
+                                    <input type="password" class="form-control" placeholder="Password" name="student_pwd"> <br>
+                                    <input type="text" class="form-control" placeholder="이름" autofocus="" name="student_name"> <br>
+                                    <input type="number" class="form-control" placeholder="학번" autofocus="" name="student_no"> <br>
+                                    <input type="text" class="form-control" placeholder="이메일" autofocus=""name="student_email"> <br>
+                                    <%--<div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-secondary">
+                                        <input type="radio" name="options" id="option1" autocomplete="off"> 남자
+                                    </label>
+                                    <label class="btn btn-secondary">
+                                        <input type="radio" name="options" id="option2" autocomplete="off"> 여자
+                                    </label>
+                                </div>--%>
+                                    <p><strong>성별</strong></p>
+                                    <input type="radio" name="fruit" value="사과" /> 남자
+                                    <input type="radio" name="fruit" value="바나나" checked="checked" /> 여자
+                                    <%--<div class="custom-control custom-radio" name="student_sex">
+                                        <label class="custom-control-label" for="jb-radio-1" value="man">남자</label>
+                                        <input type="radio" name="jb-radio" id="jb-radio-1" class="custom-control-input">&nbsp&nbsp
+                                        <label class="custom-control-label" for="jb-radio-2" value="woman">여자</label>
+                                        <input type="radio" name="jb-radio" id="jb-radio-2" class="custom-control-input">
+                                    </div>--%>
+                                    <br>
+                                    <button id="signUpBtn" class="btn btn-theme btn-block" type="submit">
+                                        <i class="fa fa-lock"></i> SIGN UP
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -141,8 +143,14 @@
             var value = $(this).find('span').text();
             console.log(value);
             console.log(value+"번째 좌석 클릭");
-
         });
+
+        $("#signUpBtn").click(function () {
+            console.log("signUpBtn 클릭"); //제이쿼리로 바꿔줌
+           location.href("signUp");
+        });
+
+
 
     });
 
